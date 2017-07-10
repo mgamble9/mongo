@@ -38,4 +38,47 @@
 8. Add a field to each student collection called 'interests' that is an ARRAY.
   It should contain the following entries: 'coding', 'brunch', 'MongoDB'.
   Do this in ONE operation.
->
+>db.students.update({}, {$set: {interests: ["coding","brunch", "mongoDB"]}},
+ {multi: true})
+
+NOTE: I accidentally added a "multi" field to "Alf" and removed with:
+>db.students.update({name: "Alf"},{$unset: {multi:1}})
+
+9. Add some unique interests for each particular students into each of their
+   interest arrays.
+> db.students.update({name:"Alf"},{$push: {interests: "animal activism"}})
+> db.students.update({name:"Bill"},{$push: {interests: "cars"}})
+> db.students.update({name:"Chuck"},{$push: {interests: "hiking"}})
+> db.students.update({name:"Dill"},{$push: {interests: "slingshots"}})
+> db.students.update({name:"Elric"},{$push: {interests: "black magic"}})
+
+10. Add the interest 'taxes' into someone's interest array.
+> db.students.update({name:"Alf"},{$push: {interests: "taxes"}})
+
+11. Remove the 'taxes' interest you just added.
+> db.students.update({name:"Alf"},{$pop: {interests: "taxes"}})
+
+12. Remove all students who are from California (or Washington).
+> db.students.remove({home_state: { $in: ["WA", "CA"]}})
+
+13. Remove a user by name.
+> db.students.remove({name: "Alf"}, true)
+
+14. Remove a student whose lucky number is greater than 10 (JUST ONE)
+> db.students.remove({lucky_number: {$gt: 10}}, true)
+
+15. Add a field to each student collection called 'number_of_belts' and set
+    it to 0.
+> db.students.update({}, {$set: {number_of_belts: 0}},{multi: true})
+
+16. Increment this field by 1 for all students in Washington (Seattle Dojo).
+> db.students.update({home_state: "WA"},{$inc: {number_of_belts: 1}},{multi:true})
+
+17. Rename the 'number_of_belts' field to 'belts_earned'
+> db.students.update({},{$rename : {"number_of_belts": "belts_earned"}},{multi:true})
+
+18. Remove the 'lucky_number' field.
+> db.students.update({},{$unset: {lucky_number:1}},{multi:true})
+
+19. Add a 'updated_on' field, and set the value as the current date.
+> db.students.update({},{$set: {updated_on: new Date()}},{multi:true})
