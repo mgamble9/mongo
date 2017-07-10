@@ -1,0 +1,41 @@
+1.Create a database called 'my_first_db'.
+> use my_first_db
+
+2.Create students collection.
+> db.createCollection("students")
+
+3.Each document you insert into this collection should have the following
+ format: ({name: STRING, home_state: STRING, lucky_number: NUMBER,
+ birthday: {month: NUMBER, day: NUMBER, year: NUMBER}})
+
+4.Create 5 students with the appropriate info.
+> db.students.insert({name:"Alf", home_state:"WA", lucky_number:99,
+  birthday: {month: 1, day: 1, year: 2000}})
+> db.students.insert({name:"Bill", home_state:"WA", lucky_number:13,
+  birthday: {month: 2, day: 2, year: 2001}})
+> db.students.insert({name:"Chuck", home_state:"WA", lucky_number:9,
+  birthday: {month: 3, day: 3, year: 2002}})
+> db.students.insert({name:"Dill", home_state:"WA", lucky_number:7,
+  birthday: {month: 4, day: 4, year: 2003}})
+> db.students.insert({name:"Elric", home_state:"WA", lucky_number:666,
+  birthday: {month: 5, day: 5, year: 2004}})
+
+5.Get all students.
+> db.students.find().pretty()
+
+6.Retrieve all students who are from California (San Jose Dojo) or Washington
+ (Seattle Dojo).
+> db.students.find({home_state: { $in: ["WA", "CA"]}}).pretty()
+
+7. Get all students whose lucky number is:
+  a)greater than 3
+  b)less than or equal to 10
+  c)between 1 and 9 (inclusive)
+> db.students.find({lucky_number: {$gt: 3}}).pretty()
+> db.students.find({lucky_number: {$lte: 10}}).pretty()
+> db.students.find({$and: [{lucky_number:{$lte: 9}},{lucky_number:{$gte: 1}}]}).pretty()
+
+8. Add a field to each student collection called 'interests' that is an ARRAY.
+  It should contain the following entries: 'coding', 'brunch', 'MongoDB'.
+  Do this in ONE operation.
+>
