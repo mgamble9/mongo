@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Quoting Dojo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <script type ="text/javascript" src="/socket.io/socket.io.js"></script> -->
+    <script type ="text/javascript">
+    $(document).ready(function (){
+    });
+    </script>
+
+  </head>
+  <body>
+    <h1>Goats Dashboard</h1>
+    <div>
+      <% for (let i = 0; i < goats.length; i++) { %>
+      <p><%=goats[i].name %></p>
+      <p><%= goats[i].id %></p>
+      <a href="goats/<%= goats[i].id %>">display</a>
+      <a href="goats/edit/<%= goats[i].id %>">edit</a>
+      <a href="goats/destroy/<%= goats[i].id %>">delete</a>
+      <br>
+      <% } %>
+    </div>
+    <a href="goats/new">new goat</a>
+  </body>
+</html>

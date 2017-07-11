@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Quoting Dojo</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <script type ="text/javascript" src="/socket.io/socket.io.js"></script> -->
+    <script type ="text/javascript">
+    $(document).ready(function (){
+    });
+    </script>
+
+  </head>
+  <body>
+    <h1>Edit Goat</h1>
+    <form action='/goats/<%= id %>' method = 'post'>
+      Goat name:<input type="text" name="name" placeholder="<%= name %>">
+      <input type="submit" name="edit_goat" value="edit goat name">
+    </form>
+  </body>
+</html>
