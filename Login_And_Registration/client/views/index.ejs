@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Login And Registration</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <!-- <script type ="text/javascript" src="/socket.io/socket.io.js"></script> -->
+    <script type ="text/javascript">
+    $(document).ready(function (){
+    });
+    </script>
+  </head>
+  <body>
+    <div>
+      <% if (pwd_fail == true){ %>
+        <p>** Passwords do not match ** %>
+      <% } %>
+      <% if (errors) { %>
+        <% if (errors['name'] == 'MongoError') { %>
+          <p>** Email is already registered **</p>
+        <% } %>
+        <% for (let error in errors['errors']) { %>
+          <p>** <%= errors['errors'][error]['message'] %> **</p>
+        <% } %>
+      <% } %>
+
+
+    </div>
+    <h1>Registration</h1>
+    <form action="/register" method="POST">
+      <input type="text" name="first_name" placeholder="first_name" autofocus>
+      <input type="text" name="last_name" placeholder="last_name" autofocus>
+      <input type="text" name="email" placeholder="email" autofocus>
+      DOB:<input type="date" name="dob">
+      <input type="text" name="password" placeholder="password" autofocus>
+      <input type="text" name="password_confirm" placeholder="password_confirm" autofocus>
+      <button type="submit" name="submit" value="submit">Register</button>
+    </form>
+    <br>
+    <h1>Login</h1>
+    <form action="/login" method="POST">
+      <input type="text" name="email" placeholder="email" autofocus>
+      <input type="text" name="password" placeholder="password" autofocus>
+      <button type="submit" name="submit" value="submit">Login</button>
+    </form>
+  </body>
+</html>
